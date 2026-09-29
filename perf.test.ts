@@ -1,0 +1,15 @@
+import { SimulationEngine } from "../src/core/SimulationEngine";
+import { buildScenario } from "../src/data/scenarios";
+const sc = buildScenario("subduction");
+const e = new SimulationEngine(sc.world, sc.physics, sc.terrain, sc.source);
+e.instruments = sc.instruments.map(i=>({...i,series:[]})); e.cities=sc.cities;
+e.armSource(); e.resetSimulation();
+console.log("grid",e.solver.nx,"dx",e.grid.dx.toFixed(0));
+const t0=Date.now();
+while(e.solver.time<600) e.advance(2,400);
+e.updateStats();
+console.log("600 sim-s in",Date.now()-t0,"ms  → realtime factor", (600/((Date.now()-t0)/1000)).toFixed(0)+"x");
+console.log("maxWave",e.stats.maxWaveHeight.toFixed(2),"maxV",e.stats.maxVelocity.toFixed(2),"inund km2",(e.stats.maxInundationArea/1e6).toFixed(1),"penetration km",(e.stats.maxInundationDistance/1000).toFixed(2));
+console.log("events:"); for(const ev of e.events) console.log("  ",ev.t.toFixed(1),ev.severity,ev.label,ev.detail??"");
+const t1=Date.now(); e.seek(120,40000); console.log("seek 120 ->",e.solver.time.toFixed(1),"in",Date.now()-t1,"ms");
+console.log("cache",(e.checkpointBytes()/1e6).toFixed(0),"MB", e.checkpoints.length,"cps");

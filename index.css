@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: #121416;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ── copper scrollbars ───────────────────────────── */
+.tsu-scroll::-webkit-scrollbar,
+aside::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+.tsu-scroll::-webkit-scrollbar-track,
+aside::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+  background: #111315;
+}
+.tsu-scroll::-webkit-scrollbar-thumb,
+aside::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+  background: #4a3a2c;
+  border: 1px solid #2a2c30;
+}
+.tsu-scroll::-webkit-scrollbar-thumb:hover,
+aside::-webkit-scrollbar-thumb:hover,
+div::-webkit-scrollbar-thumb:hover {
+  background: #8a5f37;
+}
+
+/* ── instrument sliders ──────────────────────────── */
+input[type="range"].tsu-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 14px;
+  background: transparent;
+  cursor: pointer;
+  min-width: 40px;
+}
+input[type="range"].tsu-range::-webkit-slider-runnable-track {
+  height: 4px;
+  background: linear-gradient(90deg, #3a3d42, #55595e);
+  border: 1px solid #22252a;
+}
+input[type="range"].tsu-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 9px;
+  height: 14px;
+  margin-top: -6px;
+  background: linear-gradient(180deg, #e0b483, #94623a);
+  border: 1px solid #23262a;
+}
+input[type="range"].tsu-range::-moz-range-track {
+  height: 4px;
+  background: #3a3d42;
+  border: 1px solid #22252a;
+}
+input[type="range"].tsu-range::-moz-range-thumb {
+  width: 9px;
+  height: 14px;
+  border-radius: 0;
+  background: linear-gradient(180deg, #e0b483, #94623a);
+  border: 1px solid #23262a;
+}
+
+input:focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 1px solid #c69063;
+  outline-offset: 1px;
+}
+
+select option {
+  background: #14171a;
+  color: #dfe2e5;
+}
